@@ -1,0 +1,38 @@
+Bash
+====
+
+Append this line to ~/.bashrc to enable fzf keybindings for Bash:
+
+   source /usr/share/doc/fzf/examples/key-bindings.bash
+
+Note, since fzf 0.29.0-1, the bash completion is installed for bash
+by default. Feel free to ignore the following instruction for fzf >= 0.29.0-1.
+Append this line to ~/.bashrc to enable fuzzy auto-completion for Bash:
+
+   source /usr/share/doc/fzf/examples/completion.bash
+
+Zsh
+===
+
+Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
+
+   source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+Append this line to ~/.zshrc to enable fuzzy auto-completion for Zsh:
+
+   source /usr/share/doc/fzf/examples/completion.zsh
+
+Fish
+====
+
+Issue the following commands to enable fzf keybindings for Fish:
+
+   mkdir -p ~/.config/fish/functions/
+   echo fzf_key_bindings > ~/.config/fish/functions/fish_user_key_bindings.fish
+
+Vim
+===
+
+The straightforward way to use fzf.vim is appending this line to your vimrc:
+
+   source /usr/share/doc/fzf/examples/fzf.vim

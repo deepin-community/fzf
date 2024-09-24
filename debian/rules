@@ -1,4 +1,25 @@
 #!/usr/bin/make -f
+include /usr/share/dpkg/pkg-info.mk
+export DH_GOPKG := github.com/junegunn/fzf
+export DH_GOLANG_INSTALL_EXTRA := man/man1 shell
 
 %:
-	dh $@
+	dh $@ --builddirectory=_build --buildsystem=golang --with=golang
+
+# we are not using the Makefile for build. hence the FZF_VERSION and FZF_REVISION are not used.
+execute_before_dh_auto_configure:
+	cp main.go main.go.bak
+	sed -e "s@var version string = \"[0-9.]*\"@var version string = \"$(DEB_VERSION_UPSTREAM)\"@" -i main.go
+	sed -e "s@var revision string = \"devel\"@var revision string = \"debian\"@" -i main.go
+
+override_dh_auto_install:
+	FZF_VERSION=$(DEB_VERSION_UPSTREAM) \
+        FZF_REVISION=debian \
+        dh_auto_install -- --no-source
+
+override_dh_compress:
+	dh_compress -Xkey-bindings -Xcompletion -Xfzf.vim
+
+override_dh_auto_clean:
+	-mv main.go.bak main.go
+	dh_auto_clean
