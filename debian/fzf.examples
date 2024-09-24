@@ -1,0 +1,5 @@
+plugin/fzf.vim
+shell/completion.zsh
+shell/key-bindings.bash
+shell/key-bindings.fish
+shell/key-bindings.zsh
